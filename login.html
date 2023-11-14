@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="loginHtmlFileBody">
+    <div id="loginContainer" class="center">
+
+        <h1>Login</h1>
+        <form id="log-in-form">
+            <div class="txt_field">
+                <input type="text"  id="loginEmail" required>
+                <span></span>
+                <label>UserEmail</label>
+            </div>
+            <div class="txt_field">
+                <input type="password" id="loginPasword" required>
+                <span></span>
+                <label>Password</label>
+            </div>
+            <div class="pass">Forgot Password?</div>
+            <button id="login-register-btn">Login</button>
+        <div class="signup_link">Don't have an account? <a href="index.html">Sign up</a></div>
+         
+        </form>
+    </div>
+    
+    <div id="maincontainer">
+    <div id="welcomeDiv" style="display: none;" class="same"  >
+
+        <h1>welcome !</h1>
+        <h2>You have successfully logged in</h2>
+        <button id="logoutBtn" class="same">logout</button>
+    </div>
+</div>
+
+<div id="logOutLoader" class="lds-dual-ring" style="display: none;"></div>
+</body>
+<script type="module" src="script.js"></script>
+</html>
