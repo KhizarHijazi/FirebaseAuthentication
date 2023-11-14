@@ -129,7 +129,7 @@ onAuthStateChanged(auth, (user) => {
 
 // User Signout Authentication
 
-logoutBtn.addEventListener('click',()=>{
+logoutBtn?.addEventListener('click',()=>{
 
   maincontainer.style.display='none'
   logOutLoader.style.display = "block";
