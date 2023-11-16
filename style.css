@@ -127,14 +127,28 @@ form .txt_field {
   text-decoration: underline;
 }
 
+#maincontainer{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sub-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width:100%;
+  height: 100%;
+}
 #welcomeDiv{
-  position: absolute;
+  /* position: absolute;
   top: 50%;
-  left: 50%;
+  left: 50%; */
   display: flex;
   text-align: center;
   align-items: center;
-  transform: translate(-50%, -50%);
+  /* transform: translate(-50%, -50%); */
   max-width: 500px;
   width: 100%;
 }
@@ -231,4 +245,153 @@ form .txt_field {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.todoinputdiv{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 320px;
+}
+
+#todo-iput {
+  /* width: 100%; */
+  /* padding: 0 5px; */
+  height: 30px;
+  font-size: 16px;
+  border: none;
+  /* background: none; */
+  outline: none;
+  color: #211f1f;
+  background-image: linear-gradient(#f7f8fa ,#e7e9ec);
+  border-color: #adb1b8 #a2a6ac #8d9096;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  outline: 0;
+  overflow: hidden;
+  padding: 0 11px;
+}
+
+#todo-btn {
+  background-image: linear-gradient(#f7f8fa ,#e7e9ec);
+  border-color: #adb1b8 #a2a6ac #8d9096;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  box-shadow: rgba(255,255,255,.6) 0 1px 0 inset;
+  box-sizing: border-box;
+  color: #0f1111;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Amazon Ember",Arial,sans-serif;
+  font-size: 20px;
+  height: 30px;
+  width: 70px;
+  font-size: 13px;
+  outline: 0;
+  overflow: hidden;
+  padding: 0 11px;
+  text-align: center;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+}
+
+#todo-btn {
+  border-bottom-color: #a2a6ac;
+}
+
+#todo-btn {
+  border-bottom-color: #a2a6ac;
+}
+
+#todo-btn {
+  border-color: #a2a6ac #979aa1 #82858a;
+}
+
+#todo-btn {
+  border-color: #007be7;
+  box-shadow: #41a3f9;
+  outline: 0;
+}
+
+
+#todos-containermain h1{
+  font-size: 55px;
+  margin-bottom: 40px;
+  color: #f7f8fa;
+}
+
+.tododatacontainer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.todosdatacontainermain{
+  margin-top: 50px;
+}
+.todiv{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 320px;
+  margin-bottom: 15px;
+}
+
+.tospan{
+font-size: 17.5px;
+  width: 200px;
+border-bottom:solid 0.2px;
+border-bottom: 0.5px solid rgba(255, 255, 255, 0.5)
+}
+
+
+.deletebtn {
+  background-image: linear-gradient(#f7f8fa ,#e7e9ec);
+  border-color: #adb1b8 #a2a6ac #8d9096;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  box-shadow: rgba(255,255,255,.6) 0 1px 0 inset;
+  box-sizing: border-box;
+  color: #0f1111;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Amazon Ember",Arial,sans-serif;
+  font-size: 20px;
+  height: 30px;
+  width: 70px;
+  font-size: 13px;
+  outline: 0;
+  overflow: hidden;
+  padding: 0 11px;
+  text-align: center;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+}
+
+.deletebtn {
+  border-bottom-color: #a2a6ac;
+}
+
+.deletebtn {
+  border-bottom-color: #a2a6ac;
+}
+
+.deletebtn {
+  border-color: #a2a6ac #979aa1 #82858a;
+}
+
+.deletebtn {
+  border-color: #007be7;
+  box-shadow: #41a3f9;
+  outline: 0;
 }

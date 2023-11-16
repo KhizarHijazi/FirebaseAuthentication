@@ -10,7 +10,10 @@ import {
 import {
   getFirestore,
   collection,
-  addDoc
+  addDoc,
+  getDocs,
+  doc,
+  deleteDoc
 }
   from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
 
@@ -32,9 +35,12 @@ let registerForm = document.getElementById('sign-up-form');
 let loginform = document.getElementById('log-in-form');
 let welcomeDiv = document.getElementById('welcomeDiv');
 let loginContainer = document.getElementById('loginContainer');
-let logoutBtn =document.getElementById('logoutBtn');
-let logOutLoader =document.getElementById('logOutLoader');
-let maincontainer =document.getElementById('maincontainer');
+let logoutBtn = document.getElementById('logoutBtn');
+let logOutLoader = document.getElementById('logOutLoader');
+let maincontainer = document.getElementById('maincontainer');
+let todoBtn = document.getElementById('todo-btn');
+let todoIput = document.getElementById('todo-iput');
+let todoDataContainer = document.getElementById('tododatacontainer');
 let uid = '';
 
 
@@ -60,7 +66,7 @@ registerForm?.addEventListener("submit", e => {
         });
         console.log("Document written with ID: ", docRef.id);
         alert('You have successfully registered')
-         window.location.href='login.html'
+        window.location.href = 'login.html'
       } catch (e) {
         console.error("Error adding document: ", e);
       }
@@ -71,27 +77,16 @@ registerForm?.addEventListener("submit", e => {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log('Read this error-->', errorMessage)
-     alert(errorMessage)
+      alert(errorMessage)
     })
- 
-    // if (user) {
-    //       uid = user.uid
-    //       signUpContainer.style.display = 'none'
-    //       logInContainer.style.display = 'block'
-      
-    //     } else {
-    //       console.log('User is logged out')
-    //       signUpContainer.style.display = 'block'
-    //       logInContainer.style.display = 'none'
-    //     }
-    
+
 })
 
 //Firebase Login/sign in Authentication
 
 loginform?.addEventListener('submit', e => {
   e.preventDefault()
-  console.log(e)
+  // console.log(e)
   const userInfo2 = {
     lemail: e.target[0].value,
     lpasword: e.target[1].value
@@ -99,23 +94,24 @@ loginform?.addEventListener('submit', e => {
   signInWithEmailAndPassword(auth, userInfo2.lemail, userInfo2.lpasword)
     .then((userCredential) => {
       const user = userCredential.user;
-      console.log(user)
-      // alert('welcome ! You have successfully logged in')
+      // console.log(user)
+
 
       //User Authentication State Changing
 
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-   uid = user.uid
-   loginContainer.style.display = "none"
-    welcomeDiv.style.display = 'block'
-    
-  } else {
-    console.log('User is logged out')
-    loginContainer.style.display = 'block'
-    welcomeDiv.style.display = 'none'
-  }
-})
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          uid = user.uid
+          loginContainer.style.display = "none"
+          welcomeDiv.style.display = 'block'
+          gettodos()
+
+        } else {
+          console.log('User is logged out')
+          loginContainer.style.display = 'block'
+          welcomeDiv.style.display = 'none'
+        }
+      })
 
     })
     .catch((error) => {
@@ -129,30 +125,73 @@ onAuthStateChanged(auth, (user) => {
 
 // User Signout Authentication
 
-logoutBtn?.addEventListener('click',()=>{
+logoutBtn?.addEventListener('click', () => {
 
-  maincontainer.style.display='none'
+  maincontainer.style.display = 'none'
   logOutLoader.style.display = "block";
-  setTimeout(function() {
-      logOutLoader.style.display = "none";
+  setTimeout(function () {
+    logOutLoader.style.display = "none";
 
-      // User Signout Authentication function is here
+    // User Signout Authentication function is here
 
-      signOut(auth).then(() => {
+    signOut(auth).then(() => {
 
-      }) .catch((error) => {
+    }).catch((error) => {
 
-      });
+    });
 
-      // Add your logout logic here (e.g., redirect to login page)
-      console.log("Logout successful!");
+    // Add your logout logic here (e.g., redirect to login page)
+    console.log("Logout successful!");
   }, 2000); // Adjust the timeout value based on your needs
 
+})
 
+todoBtn.addEventListener('click', async () => {
+  // console.log('clicked')
+  if (!todoIput.value) return alert('please add an value first')
+  const todosCollection = collection(db, 'todos')
+  try {
 
-    
-  })
- 
+    const docRef = await addDoc(todosCollection, {
+      test: todoIput.value
+    });
+    todoIput.value=''
+    gettodos()
+    console.log("Document written with ID: ", docRef.id, docRef);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+
+})
+
+async function gettodos() {
+todoDataContainer.innerHTML = null
+
+  const querySnapshot = await getDocs(collection(db, 'todos'));
+  querySnapshot.forEach((tododoc) => {
+    // console.log(tododoc.data());
+    const todoData= tododoc.data()
+
+    const div = document.createElement('div')
+    div.className = 'todiv';
+    const span = document.createElement('span')
+    span.className = 'tospan';
+    span.innerText =todoData.test
+    const btn = document.createElement('button')
+    btn.className ='deletebtn';
+    btn.innerText ='delete'
+    btn.id = tododoc.id
+    btn.addEventListener('click',async function (){
+      console.log(this)
+      await deleteDoc(doc(db, 'todos',this.id));
+      gettodos()      
+    })
+    div.appendChild(span)
+    div.appendChild(btn)
+    todoDataContainer.appendChild(div)
+  });
+
+}
 
 
 
