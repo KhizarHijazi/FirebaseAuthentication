@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BlogApp</title>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body id="blogbody">
+
+  <nav>
+    <div class="navbar">
+      <div class="logo"><a href="#">Blog Dashboard</a></div>
+      <ul class="menu">
+        <!-- <li><a href="#Home">Home</a></li>
+        <li><a href="#About">About</a></li>
+        <li><a href="#Category">Category</a></li>
+        <li><a href="#Contact">Contact</a></li> -->
+        <li><button id="logoutBtn" class="same">logout</button></li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <div id="blog-container-outer">
+
+   
+      <input type="text" placeholder="Blog title" id="blogtitle" class="bloginputs">
+      <textarea  placeholder="Write here your blog"  id="blogwrite" class="bloginputs"></textarea>
+
+      <!-- <input type="text" placeholder="Write here your blog" id="blogwrite" class="bloginputs"> -->
+      <button id="PublishBlogBtn">Publish Blog</button>
+
+  </div>
+
+  <div id="getBlogdiv"></div>
+
+
+  <div id="logOutLoader" class="lds-dual-ring" style="display: none;"></div>
+  <script type="module" src="script.js"></script>
+
+</body>
+<!-- <script type="module" src="script.js"></script> -->
+
+</html>

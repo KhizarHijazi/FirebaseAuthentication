@@ -7,10 +7,18 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="loginHtmlFileBody">
+
+    
+
     <div id="loginContainer" class="center">
 
         <h1>Login</h1>
         <form id="log-in-form">
+            <div class="txt_field">
+                <input type="text"  id="lfullname" required>
+                <span></span>
+                <label>fullname</label>
+                </div>
             <div class="txt_field">
                 <input type="text"  id="loginEmail" required>
                 <span></span>
@@ -28,38 +36,7 @@
         </form>
     </div>
     
-    <div id="maincontainer">
-
-        <div class="sub-container">
-
-    <div id="welcomeDiv" style="display: none;" class="same"  >
-
-        <h1>welcome !</h1>
-        <h2>You have successfully logged in</h2>
-        <button id="logoutBtn" class="same">logout</button>
-
-    </div>
-
-    <div id="todos-containermain">
-       
-            <h1>Your Todos</h1>
-        
-        
-        <div class="todoinputdiv">
-            
-        <input type="text" placeholder="insert" id="todo-iput">
-        <button id="todo-btn">Add Todo</button>
-    </div>
-
-    <div class="todosdatacontainermain">
-        <div id="tododatacontainer"></div>
-    </div>
-    </div>
     
-</div>
-</div>
-
-<div id="logOutLoader" class="lds-dual-ring" style="display: none;"></div>
 </body>
 <script type="module" src="script.js"></script>
 </html>

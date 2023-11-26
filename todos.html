@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todos App</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <nav>
+        <div class="navbar">
+            <div class="logo"><a href="#">Todo's</a></div>
+            <ul class="menu">
+                <!-- <li><a href="#Home">Home</a></li>
+            <li><a href="#About">About</a></li>
+            <li><a href="#Category">Category</a></li>
+            <li><a href="#Contact">Contact</a></li> -->
+                <li><button id="logoutBtn" class="same">logout</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- todos container start -->
+    <div id="todos-maincontainer" >
+
+        <h1>Your Todos</h1>
+
+
+        <div class="todoinputdiv">
+
+            <input type="text" placeholder="insert" id="todo-iput">
+            <button id="todo-btn">Add Todo</button>
+        </div>
+
+        <div class="todosdatacontainermain">
+            <div id="tododatacontainer"></div>
+        </div>
+
+    </div>
+    <!-- todos container end -->
+    <div id="logOutLoader" class="lds-dual-ring" style="display: none;"></div>
+
+</body>
+<script type="module" src="script.js"></script>
+
+</html>
