@@ -35,7 +35,7 @@ const db = getFirestore(app);
 
 let registerForm = document.getElementById('sign-up-form');
 let loginform = document.getElementById('log-in-form');
-let loginContainer = document.getElementById('loginContainer');
+// let loginContainer = document.getElementById('loginContainer');
 let logoutBtn = document.getElementById('logoutBtn');
 let logOutLoader = document.getElementById('logOutLoader');
 let maincontainer = document.getElementById('maincontainer');
@@ -49,9 +49,11 @@ let todoDataContainer = document.getElementById('tododatacontainer');
 let PublishBlogBtn =document.getElementById('PublishBlogBtn');
 let blogWriteInput =document.getElementById('blogwrite');
 let blogtitle =document.getElementById('blogtitle');
+let filtermaindiv =document.getElementById('filter-main-div');
+let filters =document.getElementsByName('filters');
+let filterBtn =document.getElementById('filterBtn');
 let getBlogdiv =document.getElementById('getBlogdiv');
 let uid = '';
-
 
 
   //User Authentication State Changing
@@ -142,8 +144,9 @@ if(todosmaincontainer){
 if(blogContainer){
   blogContainer.style.display = 'none'
 }
-if(getBlogdiv){
+if(getBlogdiv && filtermaindiv){
   getBlogdiv.style.display = 'none'
+  filtermaindiv.style.display = 'none'
 }
   logOutLoader.style.display = "block";
   setTimeout(function () {
@@ -226,18 +229,26 @@ blogappbtnContainer?.addEventListener('click' , ()=>{
 
 })
 
+
+
+
 PublishBlogBtn?.addEventListener('click', async(e)=>{
   e.preventDefault()
+    // const countedWords = await wordcount();
+    
  
   if (!blogWriteInput.value || !blogtitle.value) return alert('please write title or blog first')
   try {
+
     const docRef = await addDoc(collection(db, "blogs"), {
       blogtitle : blogtitle.value,
       blog : blogWriteInput.value,
+      // words :wordcount(),
       user : uid
     });
     blogtitle.value= ''
     blogWriteInput.value = ''
+    wordcount()
     getBlogs ()
     console.log("Document written with ID: ", docRef.id);
   } catch (e) {
@@ -254,11 +265,18 @@ async function getBlogs (){
   const querySnapshot = await getDocs(collection(db, "blogs"));
 querySnapshot.forEach(async(blogdoc) => {
   const bloginfo =blogdoc.data()
-  console.log('bloginfo-->' ,bloginfo)
+  // console.log('bloginfo-->' ,bloginfo)
   // console.log(`${blogdoc.id} => ${blogdoc.data()}`);
-  const userRef = doc(db, "users", bloginfo.user);
+  const userRef = doc(db, "users", uid);
   const userinfo = await getDoc(userRef);
-  console.log('userinfo-->' ,userinfo.data())
+  // if (userinfo.exists()) {
+  //   console.log("Document data:", userinfo.data());
+  // } else {
+  //   // docSnap.data() will be undefined in this case
+  //   console.log("No such document!");
+  // }
+  
+  // console.log('userinfo-->' ,userinfo.data())
   bloginfo.userinfo = userinfo.data()
   
   let {blog , blogtitle , user , userinfo:{sfullname}} = bloginfo
@@ -270,7 +288,7 @@ querySnapshot.forEach(async(blogdoc) => {
   titlediv.innerText=blogtitle
   const namediv =document.createElement('div');
   namediv.className='namediv'
-  namediv.innerText='Published by :'+sfullname
+  namediv.innerText='Published by :'+ sfullname
   const btextdiv =document.createElement('div');
   btextdiv.className='btextdiv'
   btextdiv.innerText =blog
@@ -293,9 +311,38 @@ querySnapshot.forEach(async(blogdoc) => {
   getBlogdiv.appendChild(bdiv)
 
 });
-
 }
 
+// filterBtn.addEventListener('click',()=>{
+//   let filtered;
+//   filters.forEach((data)=>{
+//     if(data.checked){
+//       filtered=data.value
+//     }
+//   })
+//   console.log(filtered)
 
+ 
+// })
 
-
+async function wordcount() {
+  let set;
+  const querySnapshot = await getDocs(collection(db, "blogs"));
+  querySnapshot.forEach(async (blogsdata) => {
+    const docRef = doc(db, "blogs", blogsdata.id);
+    //     // console.log(blogsdata.id, " => ", blogsdata.data());
+    const countblog = (await getDoc(docRef)).data(); 
+    console.log(countblog)
+    // let counted = 0;
+    if (countblog && countblog.blog) { 
+      let totalWords = countblog.blog.split(/\s+/).length; 
+      console.log(totalWords);
+      let prop={words:totalWords}
+      let set =await setDoc(docRef, prop);
+      console.log(set)
+    }
+    
+  
+  });
+  return set;
+}
