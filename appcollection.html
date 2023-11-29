@@ -1,57 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo's</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-</head>
-
-<body>
-
-
-        <nav>
-            <div class="navbar">
-                <div class="logo"><a href="#">Hijazicode</a></div>
-                <ul class="menu">
-                    <!-- <li><a href="#Home">Home</a></li>
+  <body>
+    <nav>
+      <div class="navbar">
+        <div class="logo"><a href="#">Hijazicode</a></div>
+        <ul class="menu">
+          <!-- <li><a href="#Home">Home</a></li>
             <li><a href="#About">About</a></li>
             <li><a href="#Category">Category</a></li>
             <li><a href="#Contact">Contact</a></li> -->
-                    <li><button id="logoutBtn" class="same">logout</button></li>
-                </ul>
-            </div>
-        </nav>
+          <li><button id="logoutBtn" class="same">logout</button></li>
+        </ul>
+      </div>
+    </nav>
 
-        <div id="maincontainer">
-
-                <!-- apps container start -->
-                <div class="apps-container">
-                    <div>
-                        <h1 style="font-size: 80px;">Apps collection</h1>
-                    </div>
-
-                    <div id="blogappbtn-container" class="same">
-                        <div>
-                            Blog App
-                        </div>
-                    </div>
-                    <div id="todoapp-container" class="same">
-                        <div>
-                            Todo App
-                        </div>
-                    </div>
-                </div>
-                <!-- apps container end -->
-
+    <div id="maincontainer">
+      <!-- apps container start -->
+      <div class="apps-container">
+        <div>
+          <h1 style="font-size: 80px">Apps collection</h1>
         </div>
 
-        <div id="logOutLoader" class="lds-dual-ring" style="display: none;"></div>
+        <div style="display: flex; flex-wrap: wrap">
+          <div
+            id="blogappbtn-container"
+            style="margin-right: 20px"
+            class="same"
+          >
+            <div>Blog App</div>
+          </div>
+          <div id="todoapp-container" style="margin-left: 20px" class="same">
+            <div>Todo App</div>
+          </div>
+        </div>
+      </div>
+      <!-- apps container end -->
+    </div>
 
-
-</body>
-<script type="module" src="script.js"></script>
-
+    <div id="logOutLoader" class="lds-dual-ring" style="display: none"></div>
+  </body>
+  <script type="module" src="script.js"></script>
 </html>
