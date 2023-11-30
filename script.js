@@ -118,7 +118,7 @@ loginform?.addEventListener("submit", (e) => {
       const user = userCredential.user;
       // console.log(user)
       if (logOutLoader) {
-        logOutLoader.style.display = "block";
+        logOutLoader.style.display = "block"
         loginContainer.style.display = 'none'
       }
       setTimeout(function () {
@@ -344,10 +344,10 @@ function wordcount(string) {
   return numberOfWords;
 }
 // chat App -----
-chatappContainer.addEventListener('click' , ()=>{
+chatappContainer?.addEventListener('click' , ()=>{
   alert("Chat App is under construction. Stay tuned for updates!")
 })
 //User Profile ----
-userProfile.addEventListener('click', ()=>{
+userProfile?.addEventListener('click', ()=>{
   alert("We're working on enhancing your profile experience. This feature is coming soon!")
 })
