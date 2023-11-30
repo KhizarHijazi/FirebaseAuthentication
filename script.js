@@ -35,6 +35,7 @@ const db = getFirestore(app);
 
 let registerForm = document.getElementById("sign-up-form");
 let loginform = document.getElementById("log-in-form");
+let loginContainer = document.getElementById('loginContainer');
 // let loginContainer = document.getElementById('loginContainer');
 let logoutBtn = document.getElementById("logoutBtn");
 let logOutLoader = document.getElementById("logOutLoader");
@@ -53,9 +54,11 @@ let filtermaindiv = document.getElementById("filter-main-div");
 let filters = document.getElementsByName("filters");
 let filterBtn = document.getElementById("filterBtn");
 let getBlogdiv = document.getElementById("getBlogdiv");
+let chatappContainer=document.getElementById("chatapp-container");
+let userProfile =document.getElementById('userProfile');
 let uid = "";
 
-//User Authentication State Changing
+//User Authentication State Changing ----
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
@@ -67,11 +70,11 @@ onAuthStateChanged(auth, (user) => {
     // window.location.href='login.html'
   }
 });
-// Firebase registration/sign up Authentication
+// Firebase registration/sign up Authentication ----
 
 registerForm?.addEventListener("submit", (e) => {
   e.preventDefault();
-  console.log(e);
+  // console.log(e);
   const suserInfo = {
     sfullname: e.target[0].value,
     email: e.target[1].value,
@@ -79,11 +82,12 @@ registerForm?.addEventListener("submit", (e) => {
   };
   createUserWithEmailAndPassword(auth, suserInfo.email, suserInfo.password)
     .then(async (userCredential) => {
+      // console.log(userCredential)
       const user = userCredential.user;
       console.log("user-->", user);
       uid = user.uid;
-      console.log(uid);
-      console.log(suserInfo);
+      // console.log(uid);
+      // console.log(suserInfo);
 
       await setDoc(doc(db, "users", uid), suserInfo);
       alert("You have successfully registered");
@@ -98,11 +102,12 @@ registerForm?.addEventListener("submit", (e) => {
     });
 });
 
-//Firebase Login/sign in Authentication
+//Firebase Login/sign in Authentication ----
 
 loginform?.addEventListener("submit", (e) => {
   e.preventDefault();
   // console.log(e)
+
   const userInfo2 = {
     lfullname: e.target[0].value,
     lemail: e.target[1].value,
@@ -112,8 +117,18 @@ loginform?.addEventListener("submit", (e) => {
     .then((userCredential) => {
       const user = userCredential.user;
       // console.log(user)
+      if (logOutLoader) {
+        logOutLoader.style.display = "block";
+        loginContainer.style.display = 'none'
+      }
+      setTimeout(function () {
 
-      window.location.href = "appcollection.html";
+        window.location.href = "appcollection.html";
+        // Add your logout logic here (e.g., redirect to login page)
+        console.log("Logout successful!");
+      }, 1000); // Adjust the timeout value based on your needs
+
+      // window.location.href = "appcollection.html";
       gettodos();
     })
 
@@ -125,7 +140,7 @@ loginform?.addEventListener("submit", (e) => {
     });
 });
 
-// User Signout Authentication
+// User Signout Authentication ----
 
 logoutBtn?.addEventListener("click", () => {
   if (maincontainer) {
@@ -148,14 +163,15 @@ logoutBtn?.addEventListener("click", () => {
     // User Signout Authentication function is here
 
     signOut(auth)
-      .then(() => {})
-      .catch((error) => {});
+      .then(() => { })
+      .catch((error) => { });
 
     // Add your logout logic here (e.g., redirect to login page)
     console.log("Logout successful!");
   }, 2000); // Adjust the timeout value based on your needs
 });
 
+// Todo App ----
 todoBtn?.addEventListener("click", async () => {
   // console.log('clicked')
   if (!todoIput.value) return alert("please add an value first");
@@ -209,7 +225,7 @@ todoappContainer?.addEventListener("click", () => {
   console.log();
   window.location.href = "todos.html";
 });
-
+// Blog App ----
 blogappbtnContainer?.addEventListener("click", () => {
   window.location.href = "blog.html";
   getBlogs();
@@ -236,7 +252,7 @@ PublishBlogBtn?.addEventListener("click", async (e) => {
 });
 
 async function getBlogs(
-  que = query(collection(db, "blogs"), where("words", "<=", 50))
+  que = query(collection(db, 'blogs'))
 ) {
   if (!getBlogdiv) {
     // console.log("getBlogdiv is null");
@@ -244,16 +260,17 @@ async function getBlogs(
   }
   getBlogdiv.innerHTML = null;
   const querySnapshot = await getDocs(que);
+  // console.log(querySnapshot)
   querySnapshot.forEach(async (blogdoc) => {
     const bloginfo = blogdoc.data();
-    console.log("bloginfo-->", bloginfo);
+    // console.log("bloginfo-->", bloginfo);
 
     if (bloginfo.user) {
       const userRef = doc(db, "users", bloginfo.user);
       const userinfo = await getDoc(userRef);
-      console.log("userInfo--->", userinfo);
+      // console.log("userInfo--->", userinfo);
       if (userinfo.exists()) {
-        console.log("data--->", userinfo.data());
+        // console.log("data--->", userinfo.data());
         bloginfo.userinfo = userinfo.data();
       }
     } else {
@@ -291,25 +308,46 @@ async function getBlogs(
     getBlogdiv.appendChild(bdiv);
   });
 }
-
+// Blog filtration -----
 filterBtn?.addEventListener("click", () => {
   let filtered;
+  let q;
   filters.forEach((data) => {
     if (data.checked) {
       filtered = data.value;
     }
   });
-  let q;
+
+
   if (filtered == 50) {
     q = query(collection(db, "blogs"), where("words", "<=", 50));
   }
   if (filtered == 100) {
     q = query(collection(db, "blogs"), where("words", "<=", 100));
   }
+  if (filtered == 150) {
+    q = query(collection(db, "blogs"), where("words", "<=", 150));
+  }
+  if (filtered == 'userblogs') {
+    q = query(collection(db, "blogs"), where("user", "==", uid));
+  }
+  if (filtered == 'All') {
+    q = query(collection(db, "blogs"))
+  }
   getBlogs(q);
+  console.log('filter....', filtered)
+  console.log('q....', q)
 });
 
 function wordcount(string) {
   const numberOfWords = string.split(/\s+/).length;
   return numberOfWords;
 }
+// chat App -----
+chatappContainer.addEventListener('click' , ()=>{
+  alert("Chat App is under construction. Stay tuned for updates!")
+})
+//User Profile ----
+userProfile.addEventListener('click', ()=>{
+  alert("We're working on enhancing your profile experience. This feature is coming soon!")
+})

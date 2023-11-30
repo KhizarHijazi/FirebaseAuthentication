@@ -1,63 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BlogApp</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
 
-  <body id="blogbody">
-    <nav>
-      <div class="navbar">
-        <div class="logo"><a href="#">Blog Dashboard</a></div>
-        <ul class="menu">
-          <!-- <li><a href="#Home">Home</a></li>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BlogApp</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body id="blogbody">
+
+  <nav>
+    <div class="navbar">
+      <div class="logo"><a href="#">Blog Dashboard</a></div>
+      <ul class="menu">
+        <!-- <li><a href="#Home">Home</a></li>
         <li><a href="#About">About</a></li>
         <li><a href="#Category">Category</a></li>
         <li><a href="#Contact">Contact</a></li> -->
-          <li><button id="logoutBtn" class="same">logout</button></li>
-        </ul>
-      </div>
-    </nav>
-
-    <div id="blog-container-outer">
-      <input
-        type="text"
-        placeholder="Blog title"
-        id="blogtitle"
-        class="bloginputs"
-      />
-      <textarea
-        placeholder="Write here your blog"
-        id="blogwrite"
-        class="bloginputs"
-      ></textarea>
-
-      <!-- <input type="text" placeholder="Write here your blog" id="blogwrite" class="bloginputs"> -->
-      <button id="PublishBlogBtn">Publish Blog</button>
+        <li><button id="logoutBtn" class="abc">logout</button></li>
+        <li><a id="userProfile" class="any" href="#"><i class="fa-solid fa-user" style="color: #2980b9;"></i>
+                        
+        </a></li>
+      </ul>
     </div>
+  </nav>
 
-    <div id="filter-main-div">
-      <label
-        ><input type="radio" name="filters" value="50" id="fifty" /> under the
-        50 words</label
-      >
-      <label
-        ><input type="radio" name="filters" value="100" id="hundred" /> under
-        the 100 words</label
-      >
-      <label
-        ><input type="radio" name="filters" value="150" id="onefifty" /> under
-        the 150 words</label
-      >
-      <button id="filterBtn">Filter</button>
-    </div>
 
-    <div id="getBlogdiv"></div>
+  <div id="blog-container-outer">
 
-    <div id="logOutLoader" class="lds-dual-ring" style="display: none"></div>
-    <script type="module" src="script.js"></script>
-  </body>
-  <!-- <script type="module" src="script.js"></script> -->
+
+    <input type="text" placeholder="Blog title" id="blogtitle" class="bloginputs">
+    <textarea placeholder="Write here your blog" id="blogwrite" class="bloginputs"></textarea>
+
+    <!-- <input type="text" placeholder="Write here your blog" id="blogwrite" class="bloginputs"> -->
+    <button id="PublishBlogBtn">Publish Blog</button>
+
+  </div>
+
+  <div id="filter-main-div">
+    <label><input type="radio" name="filters" value=50 id="fifty"> under the 50 words</label>
+    <label><input type="radio" name="filters" value=100 id="hundred"> under the 100 words</label>
+    <label><input type="radio" name="filters" value=150 id="onefifty"> under the 150 words</label>
+    <label><input type="radio" name="filters" value='userblogs' id="onlyuserblogs"> User Blogs</label>
+    <label><input type="radio" name="filters" value='All' id="allBlogs"> All Blogs</label>
+    <button id="filterBtn">Filter</button>
+
+  </div>
+
+  <div id="getBlogdiv"></div>
+
+
+  <div id="logOutLoader" class="lds-dual-ring" style="display: none;"></div>
+  <script type="module" src="script.js"></script>
+
+</body>
+<!-- <script type="module" src="script.js"></script> -->
+
 </html>

@@ -1,50 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Todo's</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
 
-  <body>
-    <nav>
-      <div class="navbar">
-        <div class="logo"><a href="#">Hijazicode</a></div>
-        <ul class="menu">
-          <!-- <li><a href="#Home">Home</a></li>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo's</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+
+        <nav>
+            <div class="navbar">
+                <div class="logo"><a href="#">Hijazicode</a></div>
+                <ul class="menu">
+                    <!-- <li><a href="#Home">Home</a></li>
             <li><a href="#About">About</a></li>
             <li><a href="#Category">Category</a></li>
             <li><a href="#Contact">Contact</a></li> -->
-          <li><button id="logoutBtn" class="same">logout</button></li>
-        </ul>
-      </div>
-    </nav>
+                    <li><button id="logoutBtn" class="abc">logout</button></li>
+                    <li><a id="userProfile" class="any" href="#"><i class="fa-solid fa-user" style="color: #2980b9;"></i>
+                        
+                    </a></li>
+                </ul>
+            </div>
+        </nav>
 
-    <div id="maincontainer">
-      <!-- apps container start -->
-      <div class="apps-container">
-        <div>
-          <h1 style="font-size: 80px">Apps collection</h1>
+        <div id="maincontainer">
+
+                <!-- apps container start -->
+                <div class="apps-container">
+                    <div>
+                        <h1 style="font-size: 80px;">Apps collection</h1>
+                    </div>
+
+                    <div id="blogappbtn-container" class="same">
+                        <div>
+                            Blog App
+                        </div>
+                    </div>
+
+                    <div id="todoapp-container" class="same">
+                        <div>
+                            Todo App
+                        </div>
+                    </div>
+
+                    <div id="chatapp-container" class="same">
+                        <div>
+                            Chat App
+                        </div>
+                    </div>
+
+                </div>
+                <!-- apps container end -->
+
         </div>
 
-        <div style="display: flex; flex-wrap: wrap">
-          <div
-            id="blogappbtn-container"
-            style="margin-right: 20px"
-            class="same"
-          >
-            <div>Blog App</div>
-          </div>
-          <div id="todoapp-container" style="margin-left: 20px" class="same">
-            <div>Todo App</div>
-          </div>
-        </div>
-      </div>
-      <!-- apps container end -->
-    </div>
+        <div id="logOutLoader" class="lds-dual-ring" style="display: none;"></div>
 
-    <div id="logOutLoader" class="lds-dual-ring" style="display: none"></div>
-  </body>
-  <script type="module" src="script.js"></script>
+
+</body>
+<script type="module" src="script.js"></script>
+
 </html>
